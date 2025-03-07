@@ -1,21 +1,30 @@
+from window_class import Line, Point
 class Cell:
-    def __init__(self,window, x1, y1, x2, y2, left_wall = True, top_wall = True, right_wall = True, bottom_wall = True):
+    def __init__(self,window):
         self.window = window
+        self.x1 = None
+        self.y1 = None
+        self.x2 = None
+        self.y2 = None
+        self.has_left_wall = True
+        self.has_top_wall = True
+        self.has_right_wall = True
+        self.has_bottom_wall = True
+
+    def draw(self, x1, y1, x2, y2,):
         self.x1 = x1
         self.y1 = y1
         self.x2 = x2
         self.y2 = y2
-        self.left_wall = left_wall
-        self.top_wall = top_wall
-        self.right_wall = right_wall
-        self.bottom_wall = bottom_wall
-
-    def draw(self):
-        if self.left_wall:
-            self.window.create_line(self.x1,self.y1,self.x1,self.y2)
-        if self.top_wall:
-            self.window.create_line(self.x1,self.y1,self.x2,self.y1)
-        if self.right_wall:
-            self.window.create_line(self.x2,self.y1,self.x2,self.y2)
-        if self.bottom_wall:
-            self.window.create_line(self.x1,self.y2,self.x2,self.y2)
+        if self.has_left_wall:
+            line = Line(Point(x1, y1), Point(x1, y2))
+            self.window.draw_line(line)
+        if self.has_top_wall:
+            line = Line(Point(x1, y1), Point(x2, y1))
+            self.window.draw_line(line)
+        if self.has_right_wall:
+            line = Line(Point(x2, y1), Point(x2, y2))
+            self.window.draw_line(line)
+        if self.has_bottom_wall:
+            line = Line(Point(x1, y2), Point(x2, y2))
+            self.window.draw_line(line)
