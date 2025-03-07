@@ -1,5 +1,5 @@
-from window_class import Window
-from point import Point,Line
+from window_class import Window,Point,Line
+
 
 def main():
     window = Window(800,600)
