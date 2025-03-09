@@ -11,7 +11,7 @@ class Maze:
         num_cols,
         cell_size_x,
         cell_size_y,
-        window,
+        window = None,
     ):
         self.x1 = x1
         self.y1 = y1
@@ -23,6 +23,10 @@ class Maze:
         self._create_cells()
 
     def _create_cells(self):
+        if self.num_cols == 0:
+            raise Exception("Need atleat 1 column")
+        if self.num_rows == 0:
+            raise Exception("Need atleast 1 row")
         self._cells = []
         for i in range (self.num_cols):
             column = []
@@ -44,8 +48,9 @@ class Maze:
         self._animate()
 
     def _animate(self):
-        self.window.redraw()
-        time.sleep(0.05)
+        if self.window is not None:
+            self.window.redraw()
+            time.sleep(0.05)
 
 
         
