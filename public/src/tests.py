@@ -33,6 +33,16 @@ class Tests(unittest.TestCase):
             m3 = Maze(0,0, num_rows,num_cols,8,8)
             self.assertEqual(str(context.exception),"Need atleat 1 row")
 
+    def test_check_entrance_cell(self):
+        m4 = Maze(0,0,10,10,5,5)
+        m4._break_entrance_and_exit()
+        self.assertEqual(m4._cells[0][0].has_top_wall,False)
+
+    def test_check_exit_cell(self):
+        m5 = Maze(0,0,10,10,5,5)
+        m5._break_entrance_and_exit()
+        self.assertEqual(m5._cells[-1][-1].has_bottom_wall,False)
+
 
 if __name__ == "__main__":
     unittest.main()

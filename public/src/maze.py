@@ -22,11 +22,20 @@ class Maze:
         self.window = window
         self._create_cells()
 
+    def _break_entrance_and_exit(self):
+        entrance_cell = self._cells[0][0]
+        entrance_cell.has_top_wall = False
+        self._draw_cell(0,0)
+        exit_cell = self._cells[-1][-1]
+        exit_cell.has_bottom_wall = False
+        self._draw_cell(len(self._cells)-1,len(self._cells[-1])-1)
+
     def _create_cells(self):
         if self.num_cols == 0:
             raise Exception("Need atleat 1 column")
         if self.num_rows == 0:
             raise Exception("Need atleast 1 row")
+        
         self._cells = []
         for i in range (self.num_cols):
             column = []
